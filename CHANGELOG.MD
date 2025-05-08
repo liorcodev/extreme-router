@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   Initial implementation of the `Extreme` router class ([`src/router.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\router.ts)).
+-   Initial implementation of the `Extreme` router class.
 -   Support for static route registration and matching.
 -   Support for dynamic route registration and matching via a plugin system.
 -   Plugin registration mechanism (`router.use`).
@@ -26,10 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Route unregistration mechanism (`router.unregister`) for static, dynamic, and optional parameter paths.
 -   Route matching mechanism (`router.match`).
 -   Route inspection mechanism (`inspect()` for retrieving a list of all registered routes).
--   Built-in plugins: `param`, `wildcard`, `regexParam`, `extensionParam`, `groupParam`, `prefixGroup`, `optionalPrefixGroup`, `optionalParam` ([`index.ts`](c:\Users\lior3\Development\liodex\extreme-router\index.ts)).
+-   Built-in plugins: `param`, `wildcard`, `regexParam`, `extensionParam`, `groupParam`, `prefixGroup`, `optionalPrefixGroup`, `optionalParam`.
 -   Support for optional parameters in routes (`router.register`).
 -   Configurable `storeFactory` for route stores.
--   Comprehensive JSDoc/TSDoc comments for the `Extreme` router class and its public methods ([`src/router.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\router.ts)).
+-   Comprehensive JSDoc/TSDoc comments for the `Extreme` router class and its public methods.
 -   Development setup using Bun, ESLint, Prettier, Vitest, tsup, Husky, lint-staged.
 -   Benchmark scripts (`match`, `memory`, `stress`).
 -   Testing suite with coverage reporting.
