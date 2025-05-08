@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Extreme Router - Plugin System > should throw error (string) if plugin handler acts unexpectedly 1`] = `[Error: Plugin unexpected error: Unexpected string error in handler]`;
+
+exports[`Extreme Router - Plugin System > should throw error (string) if plugin handler match function acts unexpectedly 1`] = `[Error: Plugin unexpected error: Unexpected string error in match]`;
+
+exports[`Extreme Router - Plugin System > should throw error if no plugin is registered 1`] = `[Error: Plugin does not exist for: :id]`;
+
+exports[`Extreme Router - Plugin System > should throw error if no plugin match the segment 1`] = `[TypeError: Cannot create property 'id' on boolean 'false']`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin does not have a handler 1`] = `[Error: Plugin missing handler: testPlugin]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin does not have a priority 1`] = `[Error: Plugin missing priority]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin does not have a syntax 1`] = `[Error: Plugin missing syntax]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin does not have an id 1`] = `[Error: Plugin missing ID]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin does not return an object 1`] = `[Error: Plugin does not return an object: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin function throw a Error value 1`] = `[Error: Plugin unexpected error: Unexpected error]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin function throws a non-Error value 1`] = `[Error: Plugin unexpected error: Unexpected string error]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler acts unexpectedly 1`] = `[Error: Plugin unexpected error: Unexpected error]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler does not have match function 1`] = `[Error: Plugin handler missing match function]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler does not return an object 1`] = `[Error: Plugin handler does not return an object: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler is not a function 1`] = `[Error: Plugin is not a function: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler match function acts unexpectedly 1`] = `[Error: Plugin unexpected error: Unexpected error]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler match function does not return a boolean 1`] = `[Error: Plugin handler match does not return a boolean: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin handler match function is not a function 1`] = `[Error: Plugin handler match is not a function: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin id already exists 1`] = `[Error: Plugin with same ID already exists: testPlugin]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin id is not a string 1`] = `[Error: Plugin ID is not a string: number]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin is not a function 1`] = `[Error: Plugin is not a function: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin priority already exists 1`] = `[Error: Plugin with same priority already exists: 1]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin priority is not a number 1`] = `[Error: Plugin priority is not a number: string]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin syntax fails to match 1`] = `[Error: Plugin handler returned null or undefined while matching syntax: testSyntax]`;
+
+exports[`Extreme Router - Plugin System > should throw error if plugin syntax is not a string 1`] = `[Error: Plugin syntax is not a string: number]`;
+
+exports[`Extreme Router - Plugin System > should throw error if registered plugins do not match the dynamic segment 1`] = `[Error: Plugin does not exist for: :productId]`;

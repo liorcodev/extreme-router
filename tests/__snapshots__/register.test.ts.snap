@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Extreme Router - Register() API > should throw error if param is already registered but with different param name 1`] = `[Error: Dynamic segment already exists: :opa (Plugin ID conflict: param)]`;
+
+exports[`Extreme Router - Register() API > should throw error if param path is already registered 1`] = `[Error: Path already registered: /:id/:test]`;
+
+exports[`Extreme Router - Register() API > should throw error if static path is already registered 1`] = `[Error: Path already registered: /test/test2/test3]`;

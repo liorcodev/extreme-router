@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Extreme Router - Match() API > should throw error for trying to register empty path 1`] = `[Error: Path cannot be empty]`;
+
+exports[`Extreme Router - Match() API > should throw error if wildcard is not at the end of the path 1`] = `[Error: Wildcard must be at the end of the path]`;

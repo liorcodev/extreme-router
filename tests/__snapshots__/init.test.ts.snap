@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Extreme Router - Init > should throw an error if plugins is not an array 1`] = `[TypeError: Cannot read properties of undefined (reading '9')]`;
+
+exports[`Extreme Router - Init > should throw an error if storeFactory does not return an object 1`] = `[TypeError: Cannot read properties of undefined (reading '1')]`;
+
+exports[`Extreme Router - Init > should throw an error if storeFactory throws a Error value 1`] = `[TypeError: Cannot read properties of undefined (reading '2')]`;
+
+exports[`Extreme Router - Init > should throw an error if storeFactory throws a non-Error value 1`] = `[TypeError: Cannot read properties of undefined (reading '2')]`;
