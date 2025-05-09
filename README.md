@@ -11,6 +11,7 @@
 </div>
 <br />
 <br />
+
 🔥 **A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility.**
 
 Extreme Router is designed for speed and flexibility. It uses an optimized radix tree (trie) structure for fast dynamic route matching and a dedicated cache for O(1) static route lookups, while its plugin architecture allows you to easily extend its capabilities to handle virtually any URL pattern.
