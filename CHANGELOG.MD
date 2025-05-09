@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added a browser usage example using JSDelivr to the documentation (`docs/examples/browser.md`).
 
 ### Changed
 
@@ -16,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 - Updated README to replace `bun coverage` with `bun test:coverage` for accuracy.
+- Updated README to include a link to the new browser example.
+- Corrected local file path links in `CONTRIBUTING.md` to use relative paths.
 
 ## [1.0.0] - 2025-05-09
 

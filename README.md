@@ -155,6 +155,9 @@ Here are examples `docs/examples` of how to integrate Extreme Router into simple
 - [Bun HTTP Server](./docs/examples/server.bun.md)
 - [Node.js HTTP Server](./docs/examples/server.node.md)
 - [Deno HTTP Server](./docs/examples/server.deno.md)
+- [Browser Example (using JSDelivr)](./docs/examples/browser.md)
+
+<span id="built-in-plugins"></span>
 
 ## 🔌 Built-in Plugins
 

@@ -67,7 +67,7 @@ Please follow these steps to have your contribution considered by the maintainer
 
 ## Development Setup
 
-As mentioned in the [`README.md#development`](c:\Users\lior3\Development\liodex\extreme-router\README.md#L554), you'll need [Bun](https://bun.sh/) installed.
+As mentioned in the [`README.md#development`](README.md#development), you'll need [Bun](https://bun.sh/) installed.
 
 1.  Clone the repository:
     ```bash
@@ -83,7 +83,7 @@ As mentioned in the [`README.md#development`](c:\Users\lior3\Development\liodex\
 
 ### Git Commit Messages
 
-This project aims to follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This helps with automated changelog generation (as seen in [`CHANGELOG.MD`](c:\Users\lior3\Development\liodex\extreme-router\CHANGELOG.MD)) and makes the commit history easier to read.
+This project aims to follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This helps with automated changelog generation (as seen in [`CHANGELOG.MD`](CHANGELOG.MD)) and makes the commit history easier to read.
 
 Common prefixes include:
 
@@ -101,20 +101,20 @@ Common prefixes include:
 Consistency is key. Please adhere to the established style in the codebase.
 
 - **Formatting:** All code is automatically formatted using [Prettier](https://prettier.io/). Please run `bun format` before committing to ensure your code matches the project's style.
-- **Linting:** Code quality and potential errors are checked using [ESLint](https://eslint.org/) based on the configuration in [`eslint.config.js`](c:\Users\lior3\Development\liodex\extreme-router\eslint.config.js). Run `bun lint` to check your code and `bun lint:fix` to automatically fix issues.
+- **Linting:** Code quality and potential errors are checked using [ESLint](https://eslint.org/) based on the configuration in [`eslint.config.js`](eslint.config.js). Run `bun lint` to check your code and `bun lint:fix` to automatically fix issues.
 - **Naming Conventions:**
   - Use `camelCase` for variables, functions, and method names.
     - Strive for descriptive names that clearly indicate the variable's purpose (e.g., `staticPathCache`, `currentNode`, `pluginMatch` rather than generic names like `cache`, `node`, or `flag`).
   - Use `PascalCase` for classes, types, and interfaces (e.g., `Extreme`, `PluginHandler`, `Node`).
   - Use `UPPER_SNAKE_CASE` for constants and enum members (e.g., `ErrorTypes.PluginMissingId`, `UUID_REGEX`).
 - **TypeScript:**
-  - This project uses TypeScript with strict mode enabled ([`tsconfig.json`](c:\Users\lior3\Development\liodex\extreme-router\tsconfig.json)). Ensure your contributions are strongly typed.
-  - Leverage TypeScript features like interfaces, types, and enums as used throughout the project (see [`src/types.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\types.ts)).
+  - This project uses TypeScript with strict mode enabled ([`tsconfig.json`](tsconfig.json)). Ensure your contributions are strongly typed.
+  - Leverage TypeScript features like interfaces, types, and enums as used throughout the project (see [`src/types.ts`](src/types.ts)).
 - **Modules:** Use ES Modules (`import`/`export`) syntax.
 - **Comments:** Use JSDoc/TSDoc style comments for explaining functions, classes, and complex logic. Use `//` for brief inline comments.
-- **Error Handling:** Follow the existing pattern of using the `ErrorTypes` enum ([`src/types.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\types.ts)) and the `throwError` method where applicable.
+- **Error Handling:** Follow the existing pattern of using the `ErrorTypes` enum ([`src/types.ts`](src/types.ts)) and the `throwError` method where applicable.
 
-**Pre-commit Hook:** Remember that [Husky](https://typicode.github.io/husky/) runs `bun lint-staged` (which includes formatting and linting) and `bun run test:coverage --changed` automatically before each commit ([`.husky/pre-commit`](c:\Users\lior3\Development\liodex\extreme-router.husky\pre-commit)). Ensure these checks pass.
+**Pre-commit Hook:** Remember that [Husky](https://typicode.github.io/husky/) runs `bun lint-staged` (which includes formatting and linting) and `bun run test:coverage --changed` automatically before each commit ([`.husky/pre-commit`](.husky/pre-commit)). Ensure these checks pass.
 
 ## Testing
 
