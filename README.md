@@ -627,7 +627,7 @@ Run the comprehensive test suite:
 ```bash
 bun test
 # or for coverage report
-bun run coverage
+bun run test:coverage
 ```
 
 The coverage report can be found in the `coverage/` directory ([`coverage/index.html`](c:\Users\lior3\Development\liodex\extreme-router\coverage\index.html)).
