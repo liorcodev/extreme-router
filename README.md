@@ -1,7 +1,6 @@
-<p align="center">
-  <img src="./assets/extreme-router-logo.png" alt="Extreme Router Logo" width="240">
-  <h1 align="center">⚡ Extreme Router – Fast and Extensible ⚡</h1>
-</p>
+<h1 align="center">⚡ Extreme Router ⚡</h1>
+
+<h2 align="center">Radix-Tree-Powered, Plugin-Driven JavaScript Router</h2>
 
 <div align="center">
   <img src="https://img.shields.io/github/issues/liorcodev/extreme-router.svg" />
@@ -11,7 +10,7 @@
   <img src="https://img.shields.io/badge/License-MIT-orange.svg?color=orange" alt="License: MIT" />
 </div>
 <br />
-
+<br />
 🔥 **A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility.**
 
 Extreme Router is designed for speed and flexibility. It uses an optimized radix tree (trie) structure for fast dynamic route matching and a dedicated cache for O(1) static route lookups, while its plugin architecture allows you to easily extend its capabilities to handle virtually any URL pattern.
@@ -165,7 +164,7 @@ Extreme Router comes with several pre-built plugins. You need to register them u
 | :------- | :-------------------- | :-------------------- | :---------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 100      | `prefixGroup`         | `/img(png\|jpg\|gif)` | Matches a static prefix followed by one of a predefined set.            | `router.register('/img(png\|jpg)');` <br> `match('/imgpng'); // Match` <br> `match('/img'); // No Match`                                                |
 | 200      | `optionalPrefixGroup` | `/img(png\|jpg)?`     | Matches a static prefix optionally followed by one of a predefined set. | `router.register('/img(png\|jpg)?');` <br> `match('/imgpng'); // Match` <br> `match('/img'); // Match`                                                  |
-| 300      | `groupParam`          | `/:png(\|jpg\|gif)`   | Matches one of a predefined set of static values as a parameter.        | `router.register('/:fmt(png\|jpg)');` <br> `match('/png'); // { params: { fmt: 'png' } }` <br> `match('/gif'); // No Match`                             |
+| 300      | `groupParam`          | `/:png(jpg\|gif)`     | Matches one of a predefined set of static values as a parameter.        | `router.register('/:fmt(png\|jpg)');` <br> `match('/png'); // { params: { fmt: 'png' } }` <br> `match('/gif'); // No Match`                             |
 | 400      | `regexParam`          | `/:id<\\d+>`          | Matches a named parameter against a custom regex.                       | `router.register('/user/:id<\\d+>');` <br> `match('/user/123'); // { params: { id: '123' } }` <br> `match('/user/abc'); // No Match`                    |
 | 500      | `extensionParam`      | `/:file.ext`          | Matches segments with a specific file extension.                        | `router.register('/:file.:ext');` <br> `match('/report.pdf'); // { params: { file: 'report', ext: 'pdf' } }`                                            |
 | 600      | `optionalParam`       | `/:id?`               | Matches an optional named parameter. See note below on priority.        | `router.register('/product/:id?');` <br> `match('/product/123'); // { params: { id: '123' } }` <br> `match('/product'); // Match (no params)`           |
