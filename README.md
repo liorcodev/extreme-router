@@ -3,8 +3,14 @@
   <h1 align="center">⚡ Extreme Router – Fast and Extensible ⚡</h1>
 </p>
 
-<p align="center">
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-orange.svg?color=orange" alt="License: MIT"></a>
+<div align="center">
+  <img src="https://img.shields.io/github/issues/liorcodev/extreme-router.svg" />
+  &nbsp;
+  <img src="https://img.shields.io/npm/v/extreme-router.svg" />
+  &nbsp;
+  <img src="https://img.shields.io/badge/License-MIT-orange.svg?color=orange" alt="License: MIT" />
+</div>
+<br />
 
 🔥 **A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility.**
 
