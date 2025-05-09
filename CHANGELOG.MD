@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+### Documentation
+- Updated README to replace `bun coverage` with `bun test:coverage` for accuracy.
+
 ## [1.0.0] - 2025-05-09
 
 ### Added
