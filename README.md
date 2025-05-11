@@ -37,7 +37,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 
 ## ✨ Features
 
-- **Blazing Fast:** Optimized radix tree implementation for O(k) lookup (k = path length), with a dedicated cache for static routes (O(1)).
+- **Blazing Fast:** Optimized radix tree implementation for O(k) lookup (k = path length)\*, with a dedicated cache for static routes (O(1)).
 - **Universal Compatibility:** Runs seamlessly on every JavaScript environment.
 - **Static & Dynamic Routing:** Supports fixed paths, parameterized segments, and wildcards.
 - **Path Normalization:** Automatically normalizes paths by removing trailing slashes and collapsing multiple consecutive slashes (e.g., `/a//b///c/` becomes `/a/b/c`).
@@ -58,6 +58,8 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 - **Compact Size:** The core library is lightweight: **12.87 KB minified** / **3.81 KB gzipped** (ESM) and **13.44 KB minified** / **4.06 KB gzipped** (CJS).
 - **Well-Tested:** Comprehensive test suite ensuring reliability with **100% code coverage**.
 - **Benchmarked:** Performance is continuously monitored.
+
+\* _For dynamic routes, while the base radix tree lookup is O(k), the involvement of plugins means that in the worst-case scenario, where multiple plugin `match` functions are evaluated for each path segment, the complexity can approach O(k \* P) (where P is the number of plugins evaluated per segment, bounded by the total number of registered plugins). However, in average cases where plugin evaluation is minimal (e.g., the first checked plugin matches, or few plugins are applicable), the complexity remains closer to O(k). The dynamic related tests conducted on the router were performed under these average case conditions._
 
 <span id="installation"></span>
 
