@@ -8,10 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-05-11
+
 ### Added
 - Added a browser usage example using JSDelivr to the documentation (`docs/examples/browser.md`).
 
 ### Changed
+- Refined the return type of the `use` method to `this | never` to accurately reflect that it can throw errors.
 
 ### Fixed
 

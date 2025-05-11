@@ -573,7 +573,7 @@ export default class Extreme<T extends Store = Store> {
    * @throws {Error} If the plugin is invalid or conflicts with an existing plugin.
    * @public
    */
-  public use(plugin: Plugin): this {
+  public use(plugin: Plugin): this | never {
     const pluginConfig = this.validatePlugin(plugin);
     this.plugins.push(pluginConfig);
     // Keep this.plugins sorted by priority (lower number = higher precedence)
