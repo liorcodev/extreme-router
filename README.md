@@ -1,6 +1,6 @@
 <h1 align="center">⚡ Extreme Router ⚡</h1>
 
-<h2 align="center">Radix-Tree-Powered, Plugin-Driven JavaScript Router</h2>
+<h2 align="center">High-Performance, Plugin-Driven JavaScript Router</h2>
 
 <div align="center">
   <img src="https://img.shields.io/github/issues/liorcodev/extreme-router.svg" />
