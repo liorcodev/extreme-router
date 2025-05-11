@@ -59,7 +59,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 - **Well-Tested:** Comprehensive test suite ensuring reliability with **100% code coverage**.
 - **Benchmarked:** Performance is continuously monitored.
 
-\* _For dynamic routes, while the base radix tree lookup is O(k), the involvement of plugins means that in the worst-case scenario, where multiple plugin `match` functions are evaluated for each path segment, the complexity can approach O(k \* P) (where P is the number of plugins evaluated per segment, bounded by the total number of registered plugins). However, in average cases where plugin evaluation is minimal (e.g., the first checked plugin matches, or few plugins are applicable), the complexity remains closer to O(k). The dynamic related tests conducted on the router were performed under these average case conditions._
+\* _For dynamic routes, the base radix tree lookup is O(k) (where k is the number of segments in the path). When matching a segment against dynamic patterns, the router iterates through the dynamic child nodes registered at that specific point in the tree. If `D_max` is the maximum number of distinct dynamic patterns (each associated with a related plugin) branching from any single node in the trie, the worst-case complexity for matching can approach O(k \* D_max). However, because dynamic children are evaluated in order of plugin priority, average-case performance is typically much closer to O(k) in case of higher priorities. The router's design aims for efficient handling even in scenarios with multiple competing plugin types for a segment._
 
 <span id="installation"></span>
 

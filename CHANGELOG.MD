@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated README to include a link to the new browser example.
 - Corrected local file path links in `CONTRIBUTING.md` to use relative paths.
 - Refined the browser example (`docs/examples/browser.md`) by removing verbose console logs and simplifying error handling logic for better clarity.
-- Clarified time complexity for dynamic route matching in `README.md` to note the potential impact of plugins (O(k*P) in worst-case, closer to O(k) in average cases).
+- Further clarified time complexity for dynamic route matching in `README.md`, detailing the `O(k * D_max)` complexity where `D_max` is the maximum number of distinct dynamic patterns at a tree node.
 
 ## [1.0.0] - 2025-05-09
 
