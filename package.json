@@ -1,6 +1,6 @@
 {
   "name": "extreme-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility",
   "author": "lior cohen",
   "homepage": "https://github.com/liorcodev/extreme-router#readme",

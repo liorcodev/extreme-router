@@ -1,4 +1,4 @@
-export type Store = Record<string, unknown>;
+export type Store = object;
 
 export type PluginHandler = (segment: string) => PluginMeta | undefined | null;
 
