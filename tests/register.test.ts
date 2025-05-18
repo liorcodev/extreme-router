@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { beforeEach, describe, it, expect } from 'vitest';
 import TestExtreme from './test-util';
 import { param } from '../src/plugins/param';
@@ -64,5 +66,38 @@ describe('Extreme Router - Register() API', () => {
   it('should throw error if param is already registered but with different param name', () => {
     testExtreme.register('/:id/:test/user');
     expect(() => testExtreme.register('/:opa/:test/user')).toThrowErrorMatchingSnapshot();
+  });
+  it('should not throw error path registered but allowRegisterUpdateExisting is true', () => {
+    testExtreme = new TestExtreme<TestStore>({
+      storeFactory: () => testStore,
+      allowRegisterUpdateExisting: true,
+    });
+    testExtreme.register('/test/test2/test3');
+    expect(() => testExtreme.register('/test/test2/test3')).not.toThrowError();
+  });
+  it('should return the same store if the static path is already registered and allowRegisterUpdateExisting is true', () => {
+    testExtreme = new TestExtreme<TestStore>({
+      storeFactory: () => testStore,
+      allowRegisterUpdateExisting: true,
+    });
+    testExtreme.register('/test/test2/test3');
+    (testExtreme.register('/test/test2/test3') as any).newProperty = 'newValue';
+    expect(testExtreme.register('/test/test2/test3')).toMatchObject({
+      newProperty: 'newValue',
+      storeId: 'test',
+    });
+  });
+  it('should return the same store if the param path is already registered and allowRegisterUpdateExisting is true', () => {
+    testExtreme = new TestExtreme<TestStore>({
+      storeFactory: () => testStore,
+      allowRegisterUpdateExisting: true,
+      plugins: [param],
+    });
+    testExtreme.register('/:id/:test/user');
+    (testExtreme.register('/:id/:test/user') as any).newProperty = 'newValue';
+    expect(testExtreme.register('/:id/:test/user')).toMatchObject({
+      newProperty: 'newValue',
+      storeId: 'test',
+    });
   });
 });

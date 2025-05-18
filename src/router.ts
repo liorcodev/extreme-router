@@ -40,6 +40,7 @@ export default class Extreme<T extends Store = Store> {
   protected defaultOptions: Options<T> = {
     storeFactory: () => Object.create(null),
     plugins: [],
+    allowRegisterUpdateExisting: false,
   };
 
   /**
@@ -250,18 +251,21 @@ export default class Extreme<T extends Store = Store> {
    * @param {string} path The static path to register.
    * @param {T} [store] Optional pre-created store object. If not provided, a new one is created using `storeFactory`.
    * @returns {T} The store object associated with the path.
-   * @throws {Error} If the path is already registered.
+   * @throws {Error} If the path is already registered and `allowRegisterUpdateExisting` is false.
    * @private
    */
   private registerStaticPath(path: string, store?: T): Match<T> | never {
     if (this.staticPathCache[path]) {
-      this.throwError(ErrorTypes.PathAlreadyRegistered, path);
+      if (!this.options.allowRegisterUpdateExisting) {
+        this.throwError(ErrorTypes.PathAlreadyRegistered, path);
+      }
+      return this.staticPathCache[path];
     }
+    const newStore = Object.create(store ?? this.options.storeFactory());
+    this.staticPathCache[path] = newStore;
     // No params in static path, so we can use the store directly
     // Even though Match<T> has params definitions and here we not return params,
     // I decided to leave the return type as Match<T> so TypeScript does not recognize params as unknown
-    const newStore = Object.create(store ?? this.options.storeFactory());
-    this.staticPathCache[path] = newStore;
     return newStore;
   }
 
@@ -270,7 +274,7 @@ export default class Extreme<T extends Store = Store> {
    * @param {string} path The dynamic path to register (e.g., '/users/:id', '/files/*').
    * @param {T} [store] Optional pre-created store object. If not provided, a new one is created using `storeFactory`.
    * @returns {T} The store object associated with the path.
-   * @throws {Error} If the path conflicts with an existing registration or uses invalid syntax.
+   * @throws {Error} If the path conflicts with an existing registration (with allowRegisterUpdateExisting = false) or uses invalid syntax.
    * @private
    */
   private registerDynamicPath(path: string, store?: T): T | never {
@@ -351,13 +355,12 @@ export default class Extreme<T extends Store = Store> {
       }
     }
 
-    if (currentNode.store && currentNode.pluginMeta?.override !== true) {
+    if (currentNode.store && currentNode.pluginMeta?.override !== true && !this.options.allowRegisterUpdateExisting) {
       this.throwError(ErrorTypes.PathAlreadyRegistered, path);
     }
-
-    currentNode.store = newStore;
+    currentNode.store = currentNode.store ?? newStore;
     currentNode.registeredPath = path;
-    return newStore;
+    return currentNode.store;
   }
 
   /**

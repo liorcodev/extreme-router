@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-05-18
+### Added
+- Introduced the `allowRegisterUpdateExisting` option to the router constructor. When enabled (`true`), invoking `router.register()` on an already registered path will return the existing store instance for that path instead of throwing an error, allowing the store's data to be updated. When disabled (`false`, default), attempting to register an existing path will throw an error as before.
+
+### Fixed
+- Ensured that when `allowRegisterUpdateExisting` is `true`, `router.register()` consistently returns the original store instance for an existing path, rather than creating a new instance. This guarantees that updates are applied to the correct store object.
+
 ## [1.0.2] - 2025-05-14
 
 ### Changed

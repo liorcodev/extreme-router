@@ -55,7 +55,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
   - Optional Prefix Group Parameters (`img(png|jpg|gif)?`)
 - **TypeScript Native:** Written entirely in TypeScript with excellent type support.
 - **Zero Dependencies:** Lightweight and dependency-free core.
-- **Compact Size:** The core library is lightweight: **12.87 KB minified** / **3.81 KB gzipped** (ESM) and **13.44 KB minified** / **4.06 KB gzipped** (CJS).
+- **Compact Size:** The core library is lightweight: **13.03 KB minified** / **3.85 KB gzipped** (ESM) and **13.60 KB minified** / **4.10 KB gzipped** (CJS).
 - **Well-Tested:** Comprehensive test suite ensuring reliability with **100% code coverage**.
 - **Benchmarked:** Performance is continuously monitored.
 
@@ -332,6 +332,7 @@ console.log(match3);
 - **`new Extreme<T>(options?: Options<T>)`**: Creates a new router instance.
   - `options.storeFactory`: A function that returns a new store object for each registered route. Defaults to `() => Object.create(null)`.
   - `options.plugins`: An array of plugin functions (`Plugin[]`) to register automatically when the router is created. Defaults to `[]`. Plugins will be applied (and sorted by priority) before any manual `router.use()` calls.
+  - `options.allowRegisterUpdateExisting`: If set to `true`, calling `router.register()` for a path that is already registered will not throw an error; instead, it will return the existing store object for that path, allowing you to update or modify its data. If `false` (default), attempting to register an already registered path will throw an error. This option only affects exact path matches and does not merge or update routes with different parameterizations or plugin handling.
 - **`router.use(plugin: Plugin): this`**: Registers a plugin function and returns the router instance, allowing method chaining.
   - Example:
     ```typescript
