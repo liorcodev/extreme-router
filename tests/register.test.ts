@@ -3,6 +3,7 @@
 import { beforeEach, describe, it, expect } from 'vitest';
 import TestExtreme from './test-util';
 import { param } from '../src/plugins/param';
+import type { Plugin } from '../src/types';
 
 describe('Extreme Router - Register() API', () => {
   let testExtreme: TestExtreme;
@@ -10,7 +11,7 @@ describe('Extreme Router - Register() API', () => {
   const testStore: TestStore = { storeId: 'test' };
 
   beforeEach(() => {
-    testExtreme = new TestExtreme<TestStore>({ storeFactory: () => testStore });
+    testExtreme = new TestExtreme<TestStore>({ storeFactory: () => ({ storeId: 'test' }) });
     testExtreme.use(param);
   });
 
@@ -77,7 +78,7 @@ describe('Extreme Router - Register() API', () => {
   });
   it('should return the same store if the static path is already registered and allowRegisterUpdateExisting is true', () => {
     testExtreme = new TestExtreme<TestStore>({
-      storeFactory: () => testStore,
+      storeFactory: () => ({ storeId: 'test' }),
       allowRegisterUpdateExisting: true,
     });
     testExtreme.register('/test/test2/test3');
@@ -89,7 +90,7 @@ describe('Extreme Router - Register() API', () => {
   });
   it('should return the same store if the param path is already registered and allowRegisterUpdateExisting is true', () => {
     testExtreme = new TestExtreme<TestStore>({
-      storeFactory: () => testStore,
+      storeFactory: () => ({ storeId: 'test' }),
       allowRegisterUpdateExisting: true,
       plugins: [param],
     });
@@ -99,5 +100,31 @@ describe('Extreme Router - Register() API', () => {
       newProperty: 'newValue',
       storeId: 'test',
     });
+  });
+  it('should override the store if dynamic property override is set to true and allowRegisterUpdateExisting is false', () => {
+    testExtreme = new TestExtreme<TestStore>({
+      storeFactory: () => ({ storeId: 'test' }),
+      allowRegisterUpdateExisting: false,
+    });
+    const newPlugin: Plugin = () => {
+      return {
+        id: 'newPlugin',
+        priority: 100,
+        syntax: '::no matter',
+        handler: (syntax) => {
+          if (!syntax.startsWith('::')) return null;
+          return {
+            paramName: '',
+            override: true,
+            match: () => {
+              return true;
+            },
+          };
+        },
+      };
+    };
+    testExtreme.use(newPlugin);
+    (testExtreme.register('/::test') as any).newProperty = 'newValue';
+    expect(testExtreme.register('/::test')).not.toHaveProperty('newProperty');
   });
 });

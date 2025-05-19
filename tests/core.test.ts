@@ -4,11 +4,9 @@ import TestExtreme from './test-util';
 
 describe('Extreme Router - Core', () => {
   let testExtreme: TestExtreme;
-  type TestStore = { storeId: 'test' };
-  const testStore: TestStore = { storeId: 'test' };
 
   beforeEach(() => {
-    testExtreme = new TestExtreme<TestStore>({ storeFactory: () => testStore });
+    testExtreme = new TestExtreme({ storeFactory: () => ({ storeId: 'test' }) });
   });
   it('should generateOptionals correctly', () => {
     let generatedPaths = testExtreme.generateOptionals('/test/:id?/:name?/age');

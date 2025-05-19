@@ -355,10 +355,17 @@ export default class Extreme<T extends Store = Store> {
       }
     }
 
-    if (currentNode.store && currentNode.pluginMeta?.override !== true && !this.options.allowRegisterUpdateExisting) {
-      this.throwError(ErrorTypes.PathAlreadyRegistered, path);
+    if (currentNode.store) {
+      if (currentNode.pluginMeta?.override !== true && this.options.allowRegisterUpdateExisting === false) {
+        this.throwError(ErrorTypes.PathAlreadyRegistered, path);
+      }
+      if (currentNode.pluginMeta?.override === true) {
+        currentNode.store = newStore;
+      }
+    } else {
+      currentNode.store = newStore;
     }
-    currentNode.store = currentNode.store ?? newStore;
+
     currentNode.registeredPath = path;
     return currentNode.store;
   }

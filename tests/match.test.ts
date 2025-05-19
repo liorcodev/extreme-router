@@ -11,12 +11,11 @@ import { optionalPrefixGroup } from '../src/plugins/optionalPrefixGroup';
 
 describe('Extreme Router - Match() API', () => {
   let testExtreme: TestExtreme;
-  type TestStore = { storeId: 'test' };
-  const testStore: TestStore = { storeId: 'test' };
+  const testStore = { storeId: 'test' };
 
   beforeEach(() => {
-    testExtreme = new TestExtreme<TestStore>({
-      storeFactory: () => testStore,
+    testExtreme = new TestExtreme({
+      storeFactory: () => ({ storeId: 'test' }),
       plugins: [
         param,
         wildcard,

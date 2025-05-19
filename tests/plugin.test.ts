@@ -5,10 +5,9 @@ import type { PluginConfig } from '../src/types';
 
 describe('Extreme Router - Plugin System', () => {
   let testExtreme: TestExtreme;
-  const testStore = { data: 'test' };
 
   beforeEach(() => {
-    testExtreme = new TestExtreme({ storeFactory: () => ({ ...testStore }) });
+    testExtreme = new TestExtreme({ storeFactory: () => ({ storeId: 'test' }) });
   });
 
   it('should register a plugin', () => {

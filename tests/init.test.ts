@@ -5,11 +5,10 @@ import { param } from '../src/plugins/param';
 
 describe('Extreme Router - Init', () => {
   let testExtreme: TestExtreme;
-  type TestStore = { storeId: 'test' };
-  const testStore: TestStore = { storeId: 'test' };
+  const testStore = { storeId: 'test' };
 
   beforeEach(() => {
-    testExtreme = new TestExtreme<TestStore>({ storeFactory: () => testStore });
+    testExtreme = new TestExtreme({ storeFactory: () => ({ storeId: 'test' }) });
   });
 
   it('should create a new instance of TestExtreme', () => {

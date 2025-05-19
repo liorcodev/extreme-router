@@ -6,7 +6,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2025-05-19
+
+### Fixed
+- Fixed a bug where a dynamic route's store was not correctly updated when `pluginMeta.override` was `true` and the global `allowRegisterUpdateExisting` option was `false`. Previously, an existing dynamic route's store was never updated due to the use of the nullish coalescing operator (`??`) when assigning the store.
+
 ## [1.1.0] - 2025-05-18
+
 ### Added
 - Introduced the `allowRegisterUpdateExisting` option to the router constructor. When enabled (`true`), invoking `router.register()` on an already registered path will return the existing store instance for that path instead of throwing an error, allowing the store's data to be updated. When disabled (`false`, default), attempting to register an existing path will throw an error as before.
 

@@ -7,8 +7,7 @@ import type { Store } from '../src/types';
 
 describe('Extreme Router - inspect() API', () => {
   let router: TestExtreme<Store>;
-  const defaultStoreData = { message: 'default store from factory' };
-  const storeFactory = () => ({ ...defaultStoreData });
+  const storeFactory = () => ({ message: 'default store from factory' });
 
   beforeEach(() => {
     router = new TestExtreme<Store>({
