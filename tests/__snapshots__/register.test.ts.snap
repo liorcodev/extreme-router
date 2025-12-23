@@ -5,3 +5,9 @@ exports[`Extreme Router - Register() API > should throw error if param is alread
 exports[`Extreme Router - Register() API > should throw error if param path is already registered 1`] = `[Error: Path already registered: /:id/:test]`;
 
 exports[`Extreme Router - Register() API > should throw error if static path is already registered 1`] = `[Error: Path already registered: /test/test2/test3]`;
+
+exports[`Extreme Router - Register() API should throw error if param is already registered but with different param name 1`] = `"Dynamic segment already exists: :opa (Plugin ID conflict: param)"`;
+
+exports[`Extreme Router - Register() API should throw error if param path is already registered 1`] = `"Path already registered: /:id/:test"`;
+
+exports[`Extreme Router - Register() API should throw error if static path is already registered 1`] = `"Path already registered: /test/test2/test3"`;

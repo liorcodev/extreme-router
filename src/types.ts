@@ -52,6 +52,7 @@ export interface Options<T extends Store = Store> {
   storeFactory: () => T;
   plugins: Plugin[];
   allowRegisterUpdateExisting?: boolean;
+  skipPluginValidation?: boolean;
 }
 
 export type Match<T extends Store = Store> = T & {

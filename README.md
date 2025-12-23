@@ -55,7 +55,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
   - Optional Prefix Group Parameters (`img(png|jpg|gif)?`)
 - **TypeScript Native:** Written entirely in TypeScript with excellent type support.
 - **Zero Dependencies:** Lightweight and dependency-free core.
-- **Compact Size:** The core library is lightweight: **13.03 KB minified** / **3.85 KB gzipped** (ESM) and **13.60 KB minified** / **4.10 KB gzipped** (CJS).
+- **Compact Size:** The core library is lightweight: **~13.17 KB minified** / **~3.85 KB gzipped** (ESM) and **~13.73 KB minified** / **~4.10 KB gzipped** (CJS).
 - **Well-Tested:** Comprehensive test suite ensuring reliability with **100% code coverage**.
 - **Benchmarked:** Performance is continuously monitored.
 
@@ -213,11 +213,9 @@ Extreme Router's power lies in its extensibility. You can easily create your own
 **Core Types:** (from [`src/types.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\types.ts))
 
 1.  **`Plugin`**: `() => PluginConfig`
-
     - The function you register with `router.use()`. It's a factory function that, when called, returns a `PluginConfig` object. This allows plugins to be configured or initialized if needed, though simple plugins might just return a static configuration object.
 
 2.  **`PluginConfig`**: `{ id: string, priority: number, syntax: string, handler: PluginHandler }`
-
     - Defines the plugin's identity, precedence, the **representative syntax pattern** it handles, and the handler function.
     - **`id: string`**: A unique identifier for the plugin (e.g., `"param"`, `"myCustomPlugin"`). This is used internally and for error reporting.
     - **`priority: number`**: A number determining the order in which plugins are evaluated during route registration and matching. Lower numbers have higher priority. Built-in plugins have priorities like `param` (700) and `wildcard` (800). Choose a priority that makes sense relative to other plugins.
@@ -225,7 +223,6 @@ Extreme Router's power lies in its extensibility. You can easily create your own
     - **`handler: PluginHandler`**: The function responsible for processing path segments during route registration.
 
 3.  **`PluginHandler`**: `(segment: string) => PluginMeta | undefined | null`
-
     - Called during `router.register()`. It receives a path segment string (e.g., `":userId"`, `":id<uuid>"`, `"*"`).
     - Its job is to determine if this `segment` matches the pattern the plugin is designed for.
     - If it matches, it should return a `PluginMeta` object containing the necessary information for matching and parameter extraction.
@@ -333,6 +330,7 @@ console.log(match3);
   - `options.storeFactory`: A function that returns a new store object for each registered route. Defaults to `() => Object.create(null)`.
   - `options.plugins`: An array of plugin functions (`Plugin[]`) to register automatically when the router is created. Defaults to `[]`. Plugins will be applied (and sorted by priority) before any manual `router.use()` calls.
   - `options.allowRegisterUpdateExisting`: If set to `true`, calling `router.register()` for a path that is already registered will not throw an error; instead, it will return the existing store object for that path, allowing you to update or modify its data. If `false` (default), attempting to register an already registered path will throw an error. This option only affects exact path matches and does not merge or update routes with different parameterizations or plugin handling.
+  - `options.skipPluginValidation`: If set to `true`, plugin validation is skipped during plugin registration (both in the constructor and when using `router.use()`), improving router initialization time. Defaults to `false`. **⚠️ WARNING:** Enabling this option is safe **only** when using official plugins or well validated custom plugins. When enabled, the router will not verify plugin structure, handler functions, or match function returns, which could lead to runtime errors if plugins are malformed. Use this option only when you are certain your plugins are properly implemented validated and tested.
 - **`router.use(plugin: Plugin): this`**: Registers a plugin function and returns the router instance, allowing method chaining.
   - Example:
     ```typescript
@@ -585,12 +583,10 @@ Test duration: 30 seconds. Lower heap usage and increase is generally better.
 The memory benchmark results highlight differing memory usage patterns between Bun and Node.js. These differences primarily stem from their underlying JavaScript engines and memory management strategies:
 
 1.  **JavaScript Engines:**
-
     - **Bun:** Utilizes JavaScriptCore (JSC), known for quick startup and potentially lower initial memory consumption.
     - **Node.js:** Employs V8, which is highly optimized for long-running server applications.
 
 2.  **Initial Heap Size and Growth:**
-
     - **Bun (JSC):** The benchmarks show Bun starting with a very small heap (e.g., `228.86 KB`). This results in a large _percentage_ increase as the application allocates memory, even if the final _absolute_ heap size remains relatively small (around 2 MB).
     - **Node.js (V8):** Node.js starts with a considerably larger initial heap (e.g., `5.33 MB - 5.67 MB`). Consequently, its _percentage_ increase is smaller for comparable absolute memory growth.
 

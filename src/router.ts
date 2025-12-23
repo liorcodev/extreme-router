@@ -41,6 +41,7 @@ export default class Extreme<T extends Store = Store> {
     storeFactory: () => Object.create(null),
     plugins: [],
     allowRegisterUpdateExisting: false,
+    skipPluginValidation: false,
   };
 
   /**
@@ -93,7 +94,7 @@ export default class Extreme<T extends Store = Store> {
    */
   private loadPlugins(plugins: Plugin[]): void | never {
     plugins.forEach((plugin) => {
-      const pluginConfig = this.validatePlugin(plugin);
+      const pluginConfig = this.options.skipPluginValidation ? plugin() : this.validatePlugin(plugin);
       this.plugins.push(pluginConfig);
     });
     // Keep this.plugins sorted by priority (lower number = higher precedence)
@@ -584,7 +585,7 @@ export default class Extreme<T extends Store = Store> {
    * @public
    */
   public use(plugin: Plugin): this | never {
-    const pluginConfig = this.validatePlugin(plugin);
+    const pluginConfig = this.options.skipPluginValidation ? plugin() : this.validatePlugin(plugin);
     this.plugins.push(pluginConfig);
     // Keep this.plugins sorted by priority (lower number = higher precedence)
     this.plugins.sort((a, b) => a.priority - b.priority);

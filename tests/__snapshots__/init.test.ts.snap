@@ -7,3 +7,11 @@ exports[`Extreme Router - Init > should throw an error if storeFactory does not 
 exports[`Extreme Router - Init > should throw an error if storeFactory throws a Error value 1`] = `[TypeError: Cannot read properties of undefined (reading '2')]`;
 
 exports[`Extreme Router - Init > should throw an error if storeFactory throws a non-Error value 1`] = `[TypeError: Cannot read properties of undefined (reading '2')]`;
+
+exports[`Extreme Router - Init should throw an error if plugins is not an array 1`] = `"undefined is not an object (evaluating 'this.errorTypes[type]')"`;
+
+exports[`Extreme Router - Init should throw an error if storeFactory does not return an object 1`] = `"undefined is not an object (evaluating 'this.errorTypes[type]')"`;
+
+exports[`Extreme Router - Init should throw an error if storeFactory throws a Error value 1`] = `"undefined is not an object (evaluating 'this.errorTypes[type]')"`;
+
+exports[`Extreme Router - Init should throw an error if storeFactory throws a non-Error value 1`] = `"undefined is not an object (evaluating 'this.errorTypes[type]')"`;

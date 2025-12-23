@@ -61,4 +61,63 @@ describe('Extreme Router - Init', () => {
     expect(newTestExtreme.getOptions().plugins.length).toBe(1);
     expect(newTestExtreme.getOptions().plugins[0]).toBe(param);
   });
+  it('should set skipPluginValidation to false by default', () => {
+    const defaultExtreme = new TestExtreme();
+    expect(defaultExtreme.getOptions().skipPluginValidation).toBe(false);
+  });
+  it('should set skipPluginValidation option correctly', () => {
+    const newTestExtreme = new TestExtreme({
+      skipPluginValidation: true,
+    });
+    expect(newTestExtreme.getOptions().skipPluginValidation).toBe(true);
+  });
+  it('should skip plugin validation when skipPluginValidation is true', () => {
+    const invalidPlugin = () => ({
+      id: 'invalidPlugin',
+      priority: 1,
+      syntax: 'invalid',
+      handler: () => 'invalid' as any, // Invalid: should return object with match function
+    });
+
+    // This should throw when validation is enabled (default)
+    expect(() => new TestExtreme({ plugins: [invalidPlugin] })).toThrowError();
+
+    // This should NOT throw when validation is disabled
+    const extremeWithSkip = new TestExtreme({
+      skipPluginValidation: true,
+      plugins: [invalidPlugin],
+    });
+    expect(extremeWithSkip.getPlugins().length).toBe(1);
+  });
+  it('should skip plugin validation when using .use() with skipPluginValidation enabled', () => {
+    const invalidPlugin = () => ({
+      id: 'invalidPlugin',
+      priority: 1,
+      syntax: 'invalid',
+      handler: () => null as any, // Invalid: should return object with match function
+    });
+
+    const extremeWithSkip = new TestExtreme({
+      skipPluginValidation: true,
+    });
+
+    // This should NOT throw when validation is disabled
+    expect(() => extremeWithSkip.use(invalidPlugin)).not.toThrow();
+    expect(extremeWithSkip.getPlugins().length).toBe(1);
+  });
+  it('should validate plugins when skipPluginValidation is false', () => {
+    const invalidPlugin = () => ({
+      id: 'invalidPlugin',
+      priority: 1,
+      syntax: 'invalid',
+      handler: () => null as any, // Invalid
+    });
+
+    const extremeWithValidation = new TestExtreme({
+      skipPluginValidation: false,
+    });
+
+    // This should throw when validation is enabled
+    expect(() => extremeWithValidation.use(invalidPlugin)).toThrowError();
+  });
 });

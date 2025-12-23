@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-12-23
+
+### Added
+- Introduced the `skipPluginValidation` option to the router constructor and for use with `router.use()`. When enabled (`true`), plugin validation is skipped during plugin registration, improving router initialization time. Defaults to `false`. **⚠️ WARNING:** This option should only be enabled when using official plugins or well validated custom plugins, as skipping validation can lead to runtime errors if plugins are malformed.
+
+### Documentation
+- Added comprehensive documentation for the `skipPluginValidation` option in the README, including safety warnings and usage guidelines.
+- Added tests for the `skipPluginValidation` feature covering both constructor initialization and `use()` method usage.
+
 ## [1.1.1] - 2025-05-19
 
 ### Fixed
