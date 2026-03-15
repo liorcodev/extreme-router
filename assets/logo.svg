@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="48" height="48" rx="11" fill="url(#bg)"/>
+  <rect x="0" y="0" width="48" height="12" rx="11" fill="white" fill-opacity="0.1"/>
+
+  <!-- Bold Letter E -->
+  <!-- Vertical bar -->
+  <rect x="13" y="12" width="4.5" height="24" rx="2" fill="white"/>
+  
+  <!-- Top horizontal bar -->
+  <rect x="13" y="12" width="18" height="4.5" rx="2" fill="white"/>
+  
+  <!-- Middle horizontal bar -->
+  <rect x="13" y="21.75" width="15" height="4.5" rx="2" fill="white"/>
+  
+  <!-- Bottom horizontal bar -->
+  <rect x="13" y="31.5" width="18" height="4.5" rx="2" fill="white"/>
+
+  <!-- Signal routing dots flowing from right side -->
+  <circle cx="34" cy="14.25" r="2" fill="white" opacity="0.9"/>
+  <circle cx="37" cy="14.25" r="1.5" fill="white" opacity="0.7"/>
+  
+  <circle cx="31" cy="24" r="2" fill="white" opacity="0.9"/>
+  <circle cx="34.5" cy="24" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="37.5" cy="24" r="1" fill="white" opacity="0.5"/>
+  
+  <circle cx="34" cy="33.75" r="2" fill="white" opacity="0.9"/>
+  <circle cx="37" cy="33.75" r="1.5" fill="white" opacity="0.7"/>
+</svg>

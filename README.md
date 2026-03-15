@@ -1,41 +1,39 @@
-<h1 align="center">⚡ Extreme Router ⚡</h1>
-
-<h2 align="center">High-Performance, Plugin-Driven JavaScript Router</h2>
-
 <div align="center">
-  <img src="https://img.shields.io/github/issues/liorcodev/extreme-router.svg" />
-  &nbsp;
+  <img src="./assets/logo.svg" alt="Extreme Router Logo" width="120" height="120">
+  <h1>Extreme Router</h1>
+  <p><strong>High-Performance, Plugin-Driven JavaScript Router</strong></p>
+  
   <img src="https://img.shields.io/npm/v/extreme-router.svg" />
   &nbsp;
   <img src="https://img.shields.io/badge/License-MIT-orange.svg?color=orange" alt="License: MIT" />
 </div>
-<br />
+
 <br />
 
-🔥 **A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility.**
+**A high-performance, tree-based router for JavaScript and TypeScript, featuring a powerful plugin system for extreme extensibility.**
 
 Extreme Router is designed for speed and flexibility. It uses an optimized radix tree (trie) structure for fast dynamic route matching and a dedicated cache for O(1) static route lookups, while its plugin architecture allows you to easily extend its capabilities to handle virtually any URL pattern.
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [✨ Features](#features)
-- [🚀 Installation](#installation)
-- [💡 Basic Usage](#basic-usage)
-- [⚡ Advanced Usage](#advanced-usage)
-- [🔌 Built-in Plugins](#built-in-plugins)
+- [Features](#features)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Advanced Usage](#advanced-usage)
+- [Built-in Plugins](#built-in-plugins)
   - [Example using regex param plugin](#example-using-regex-param-plugin)
-- [🛠️ Custom Plugins](#custom-plugins)
-- [⚙️ API](#api)
+- [Custom Plugins](#custom-plugins)
+- [API](#api)
   - [Error Types](./docs/error-types.md)
-- [📊 Benchmarks](#benchmarks)
-- [✅ Testing](#testing)
-- [🙏 Acknowledgments](#acknowledgments)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
+- [Benchmarks](#benchmarks)
+- [Testing](#testing)
+- [Acknowledgments](#acknowledgments)
+- [Contributing](#contributing)
+- [License](#license)
 
 <span id="features"></span>
 
-## ✨ Features
+## Features
 
 - **Blazing Fast:** Optimized radix tree implementation for O(k) lookup (k = path length)\*, with a dedicated cache for static routes (O(1)).
 - **Universal Compatibility:** Runs seamlessly on every JavaScript environment.
@@ -63,7 +61,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 
 <span id="installation"></span>
 
-## 🚀 Installation
+## Installation
 
 ```bash
 bun install extreme-router
@@ -77,7 +75,7 @@ pnpm add extreme-router
 
 <span id="basic-usage"></span>
 
-## 💡 Basic Usage
+## Basic Usage
 
 ```typescript
 import Extreme, { param, wildcard } from 'extreme-router';
@@ -151,7 +149,7 @@ console.log(router.inspect());
 
 <span id="advanced-usage"></span>
 
-## ⚡ Advanced Usage
+## Advanced Usage
 
 Here are examples `docs/examples` of how to integrate Extreme Router into simple HTTP servers using different JavaScript runtimes.
 
@@ -162,7 +160,7 @@ Here are examples `docs/examples` of how to integrate Extreme Router into simple
 
 <span id="built-in-plugins"></span>
 
-## 🔌 Built-in Plugins
+## Built-in Plugins
 
 Extreme Router comes with several pre-built plugins. You need to register them using `router.use()` before registering routes that depend on them. When matching a URL segment against potential dynamic routes, the router checks the registered plugins based on their **`priority`** value. **Lower priority numbers are checked first**.
 
@@ -206,7 +204,7 @@ const match2 = router.match('/users/abc');
 
 <span id="custom-plugins"></span>
 
-## 🛠️ Custom Plugins
+## Custom Plugins
 
 Extreme Router's power lies in its extensibility. You can easily create your own plugins to handle unique URL patterns or add custom matching logic. The process involves defining a plugin function that returns a configuration object, which in turn includes a handler function responsible for recognizing syntax and providing the runtime matching logic.
 
@@ -324,7 +322,7 @@ console.log(match3);
 
 <span id="api"></span>
 
-## ⚙️ API
+## API
 
 - **`new Extreme<T>(options?: Options<T>)`**: Creates a new router instance.
   - `options.storeFactory`: A function that returns a new store object for each registered route. Defaults to `() => Object.create(null)`.
@@ -354,7 +352,7 @@ console.log(match3);
 
 <span id="benchmarks"></span>
 
-## 📊 Benchmarks
+## Benchmarks
 
 The following benchmarks measure the raw speed of the `router.match()` operation (ops/sec) for different route types and route counts.
 
@@ -622,7 +620,7 @@ bun run benchmark:stress --routes=1000
 
 <span id="testing"></span>
 
-## ✅ Testing
+## Testing
 
 Run the comprehensive test suite:
 
@@ -638,19 +636,19 @@ The coverage report can be found in the `coverage/` directory ([`coverage/index.
 
 <span id="acknowledgments"></span>
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Extreme Router draws inspiration from the high-level routing concepts and per-route register/store design of [Medley Router](https://github.com/medleyjs/router). Sincere thanks to the Medley Router authors for their foundational ideas.
 
 <span id="contributing"></span>
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!  
 Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on development, testing, benchmarking, and submitting pull requests.
 
 <span id="license"></span>
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
