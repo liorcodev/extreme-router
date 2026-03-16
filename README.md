@@ -208,7 +208,7 @@ const match2 = router.match('/users/abc');
 
 Extreme Router's power lies in its extensibility. You can easily create your own plugins to handle unique URL patterns or add custom matching logic. The process involves defining a plugin function that returns a configuration object, which in turn includes a handler function responsible for recognizing syntax and providing the runtime matching logic.
 
-**Core Types:** (from [`src/types.ts`](c:\Users\lior3\Development\liodex\extreme-router\src\types.ts))
+**Core Types:** (from [src/types.ts](src/types.ts))
 
 1.  **`Plugin`**: `() => PluginConfig`
     - The function you register with `router.use()`. It's a factory function that, when called, returns a `PluginConfig` object. This allows plugins to be configured or initialized if needed, though simple plugins might just return a static configuration object.
@@ -630,7 +630,7 @@ bun test
 bun run test:coverage
 ```
 
-The coverage report can be found in the `coverage/` directory ([`coverage/index.html`](c:\Users\lior3\Development\liodex\extreme-router\coverage\index.html)).
+The coverage report can be found in the `coverage/` directory ([coverage/index.html](coverage/index.html)).
 
 **100% code coverage** is ensured.
 
