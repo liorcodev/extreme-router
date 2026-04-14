@@ -23,6 +23,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 - [Built-in Plugins](#built-in-plugins)
   - [Example using regex param plugin](#example-using-regex-param-plugin)
 - [Custom Plugins](#custom-plugins)
+  - [createPlugin Helper](#createplugin-helper)
 - [API](#api)
   - [Error Types](./docs/error-types.md)
 - [Benchmarks](#benchmarks)
@@ -51,6 +52,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
   - Group Parameters (`/:paramName(val1|val2)`)
   - Prefix Group Parameters (`img(png|jpg|gif)`)
   - Optional Prefix Group Parameters (`img(png|jpg|gif)?`)
+- **`createPlugin` Helper:** Quickly create custom plugins with minimal boilerplate using a simple declarative config.
 - **TypeScript Native:** Written entirely in TypeScript with excellent type support.
 - **Zero Dependencies:** Lightweight and dependency-free core.
 - **Compact Size:** The core library is lightweight: **~13.17 KB minified** / **~3.85 KB gzipped** (ESM) and **~13.73 KB minified** / **~4.10 KB gzipped** (CJS).
@@ -247,7 +249,7 @@ import Extreme, { param } from 'extreme-router';
 import type { Plugin, PluginHandler, PluginMeta } from 'extreme-router'; // Import types
 
 // Define the UUID regex
-const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // 1. Define the Plugin Function
 const uuidPlugin: Plugin = () => {
@@ -320,6 +322,52 @@ console.log(match2);
 console.log(match3);
 ```
 
+<span id="createplugin-helper"></span>
+
+### createPlugin Helper
+
+For the most common plugin pattern - matching a segment against a regex and capturing a named parameter - the `createPlugin` helper eliminates all the boilerplate. Instead of manually writing `PluginHandler`, `PluginMeta`, and the factory wrapper, you provide a minimal declarative config.
+
+| Option     | Type                                | Description                                                                                                                                                                               |
+| :--------- | :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`       | `string`                            | Unique plugin identifier.                                                                                                                                                                 |
+| `priority` | `number`                            | Evaluation order (lower = higher precedence).                                                                                                                                             |
+| `syntax`   | `string`                            | Representative syntax string used for validation (e.g. `':name<uuid>'`).                                                                                                                  |
+| `detect`   | `RegExp`                            | Run at **register time** against the path segment. Must have a named capture group `paramName`. Any extra named groups are passed to `test`. **⚠️ Do not use stateful flags (`g`, `y`).** |
+| `test`     | `(urlSegment, captures) => boolean` | Run at **match time**. Return `true` to accept the segment. `params[paramName]` is set automatically on `true`.                                                                           |
+| `wildcard` | `boolean?`                          | Forward `wildcard: true` to `PluginMeta`.                                                                                                                                                 |
+| `override` | `boolean?`                          | Forward `override: true` to `PluginMeta`.                                                                                                                                                 |
+
+**Example: UUID plugin using `createPlugin`**
+
+```typescript
+import Extreme, { createPlugin, param } from 'extreme-router';
+
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+const uuidPlugin = createPlugin({
+  id: 'uuid',
+  priority: 550,
+  syntax: ':name<uuid>',
+  detect: /^:(?<paramName>[a-zA-Z0-9_-]+)<uuid>$/,
+  test: (urlSegment) => UUID_REGEX.test(urlSegment),
+});
+
+const router = new Extreme<{ handler: string }>();
+router.use(uuidPlugin).use(param);
+
+router.register('/orders/:orderId<uuid>').handler = 'GetOrder';
+router.register('/users/:userId').handler = 'GetUser';
+
+router.match('/orders/123e4567-e89b-12d3-a456-426614174000');
+// { handler: 'GetOrder', params: { orderId: '123e4567-...' } }
+
+router.match('/orders/not-a-uuid'); // null
+router.match('/users/regular-id'); // { handler: 'GetUser', params: { userId: 'regular-id' } }
+```
+
+> For advanced plugin patterns that require full control over `PluginMeta` (e.g. wildcard consumption, non-capturing segments, custom `additionalMeta`), use the full manual approach described above.
+
 <span id="api"></span>
 
 ## API
@@ -348,6 +396,7 @@ console.log(match3);
     - `path: string`: The registered path string.
     - `type: 'static' | 'dynamic'`: The type of the route.
     - `store: T`: The original store object associated with the route.
+- **`createPlugin(options: CreatePluginOptions): Plugin`**: A helper utility that creates a fully valid `Plugin` from a minimal declarative config, eliminating boilerplate for common plugin patterns. See the [createPlugin Helper](#createplugin-helper) section for details and a full option reference.
 - **Error Handling**: The router uses a set of predefined [Error Types](./docs/error-types.md) for consistent error reporting.
 
 <span id="benchmarks"></span>

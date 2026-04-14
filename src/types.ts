@@ -99,3 +99,30 @@ export interface CleanupTraversalResult {
   shouldDelete: boolean;
   unregistered: boolean;
 }
+
+export interface CreatePluginOptions {
+  id: string;
+  priority: number;
+  syntax: string;
+  /**
+   * A regular expression run against the **registration-time** path segment to detect whether
+   * this plugin should handle it.
+   *
+   * Must contain a named capture group `paramName` that identifies the parameter name
+   * (e.g., `/^:(?<paramName>[a-zA-Z0-9_-]+)<uuid>$/`).
+   *
+   * Any additional named capture groups are extracted and passed to `test` as the `captures` argument.
+   *
+   * **⚠️ WARNING:** Do not use stateful flags (`g`, `y`) — it is executed once per segment via `exec`.
+   */
+  detect: RegExp;
+  /**
+   * A function called at **match time** to validate the incoming URL segment.
+   *
+   * Receives the raw URL segment and an object of all named capture groups from `detect`.
+   * When `true` is returned, the helper automatically sets `params[paramName] = urlSegment`.
+   */
+  test: (urlSegment: string, captures: Record<string, string>) => boolean;
+  wildcard?: boolean;
+  override?: boolean;
+}

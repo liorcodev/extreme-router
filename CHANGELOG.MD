@@ -6,6 +6,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-04-14
+
+### Added
+- Introduced the `createPlugin` helper utility (`src/createPlugin.ts`). Allows developers to create fully valid custom plugins from a minimal declarative config - providing `id`, `priority`, `syntax`, a `detect` regex (with a required `paramName` named capture group), and a `test` function - without writing `PluginHandler`, `PluginMeta`, or the factory wrapper by hand. Exported as `createPlugin` from the package root along with its `CreatePluginOptions` type.
+- Added `CreatePluginOptions` interface to `src/types.ts`.
+
+### Documentation
+- Added `createPlugin` Helper section to README with a full option reference table and a UUID plugin example.
+- Added `createPlugin` entry to the README API section.
+
+### Testing
+- Added comprehensive test suite for `createPlugin` (`tests/createPlugin.test.ts`) covering plugin factory output, registration-time detection, match-time behaviour, `wildcard`/`override` forwarding, and end-to-end router integration.
+
 ## [1.2.0] - 2025-12-23
 
 ### Added

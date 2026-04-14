@@ -8,6 +8,7 @@ import type {
   PluginMeta,
   ListedRoute,
   ErrorTypes,
+  CreatePluginOptions,
 } from './src/types';
 import { param } from './src/plugins/param';
 import { wildcard } from './src/plugins/wildcard';
@@ -17,7 +18,28 @@ import { groupParam } from './src/plugins/groupParam';
 import { prefixGroup } from './src/plugins/prefixGroup';
 import { optionalPrefixGroup } from './src/plugins/optionalPrefixGroup';
 import { optionalParam } from './src/plugins/optionalParam';
+import { createPlugin } from './src/createPlugin';
 
 export default Extreme;
-export type { Match, Options, Plugin, PluginConfig, PluginHandler, PluginMeta, ListedRoute, ErrorTypes };
-export { param, wildcard, regexParam, extensionParam, groupParam, prefixGroup, optionalPrefixGroup, optionalParam };
+export type {
+  Match,
+  Options,
+  Plugin,
+  PluginConfig,
+  PluginHandler,
+  PluginMeta,
+  ListedRoute,
+  ErrorTypes,
+  CreatePluginOptions,
+};
+export {
+  param,
+  wildcard,
+  regexParam,
+  extensionParam,
+  groupParam,
+  prefixGroup,
+  optionalPrefixGroup,
+  optionalParam,
+  createPlugin,
+};
