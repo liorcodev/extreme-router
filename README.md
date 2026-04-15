@@ -36,7 +36,7 @@ Extreme Router is designed for speed and flexibility. It uses an optimized radix
 
 ## Features
 
-- **Blazing Fast:** Optimized radix tree implementation for O(k) lookup (k = path length)\*, with a dedicated cache for static routes (O(1)).
+- **Fast:** Optimized radix tree implementation for O(k) lookup (k = path length)\*, with a dedicated cache for static routes (O(1)).
 - **Universal Compatibility:** Runs seamlessly on every JavaScript environment.
 - **Static & Dynamic Routing:** Supports fixed paths, parameterized segments, and wildcards.
 - **Path Normalization:** Automatically normalizes paths by removing trailing slashes and collapsing multiple consecutive slashes (e.g., `/a//b///c/` becomes `/a/b/c`).
